@@ -1,0 +1,51 @@
+<header class='header_'>
+  <nav>
+    <a routerLink="/" class='brand'>Hello-World App!</a>
+    <ul class='menu1'>
+      <li class='menu1__item'>
+        <a 
+          routerLink="/" routerLinkActive="active"
+          class='menu1__link'>
+          Home
+        </a>
+      </li>
+      <li class='menu1__item' *ngIf="isLoggedIn">
+        <a 
+          routerLink="/pages"
+          class='menu1__link'>
+          All Pages
+        </a>
+      </li>
+      <li class='menu1__item'>
+        <a 
+          routerLink="/user"
+          class='menu1__link'>
+          User
+        </a>
+      </li>
+      <li class='menu1__item' *ngIf="!isLoggedIn">
+        <a 
+          routerLink="/register"
+          class='menu1__link'>
+          Register
+        </a>
+      </li>
+      <li class='menu1__item' *ngIf="isLoggedIn">
+        <a 
+           routerLink="/login"
+           class='menu1__link'
+           (click)="logout()">
+          Logout
+        </a>
+      </li>
+      <li class='menu1__item' *ngIf="!isLoggedIn">
+        <a 
+          routerLink="/login"
+          class='menu1__link'>
+          Login
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+</header>

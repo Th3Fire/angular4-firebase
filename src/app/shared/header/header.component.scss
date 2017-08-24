@@ -1,0 +1,33 @@
+.header_ {
+  background: #2d3e50;
+  padding: 1rem;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+}
+
+.brand {
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu1 {
+  float: right;
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__link {
+    padding: 1rem;
+    color: #18d8a9;
+    text-decoration: none;
+  }
+}
