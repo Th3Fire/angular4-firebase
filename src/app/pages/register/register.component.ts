@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   items: FirebaseListObservable<any[]>;
   msgVal: string = '';
   user: any;
+  public loading = false;
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private router: Router) {
     this.items = af.list('/messages', {
       query: {
@@ -26,7 +27,9 @@ export class RegisterComponent implements OnInit {
   }
 
   register(event, name, email, password) {
+    this.loading = true;
     event.preventDefault();
+
     this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(() => {
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -37,19 +40,28 @@ export class RegisterComponent implements OnInit {
             username: name,
             email: email,
             name: name
-          }).then(() => {
-            
+          }).catch((error: any) => {
+            if (error) {
+              this.loading = false;
+              this.error = error;
+              console.log(this.error);
+            }
           })
         }
       })
     })
+      .then(() => {
+        this.loading = false;
+        this.router.navigate(['']);
+      })
       .catch((error: any) => {
         if (error) {
+          this.loading = false;
           this.error = error;
           console.log(this.error);
         }
       })
-      this.router.navigate(['']);
+
   }
 
   ngOnInit() {
