@@ -1,6 +1,6 @@
 <header class='header_'>
   <nav>
-    <a routerLink="/" class='brand'>Hello-World App!</a>
+    <a routerLink="/" class='brand'><img src="assets/images/logo.ico" alt="">Hello-World App!</a>
     <ul class='menu1'>
       <li class='menu1__item'>
         <a 
@@ -28,6 +28,13 @@
           routerLink="/register"
           class='menu1__link'>
           Register
+        </a>
+      </li>
+      <li class='menu1__item' *ngIf="isLoggedIn">
+        <a 
+          routerLink="/profile"
+          class='menu1__link'>
+          My Profile
         </a>
       </li>
       <li class='menu1__item' *ngIf="isLoggedIn">
