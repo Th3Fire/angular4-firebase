@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth,  private router: Router) { }
 
   ngOnInit() {
+    
     this.user = this.afAuth.authState;
     let authSubscription = this.afAuth.authState.subscribe(auth => {
       if (auth == null) {

@@ -29,10 +29,11 @@ export class LoginPageComponent implements OnInit {
 
   loginWithEmail(event, email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password).then((data) => {
-      console.log(this);
-      if (data.user.uid != null) {
+      console.log("data : ", data);
+      if (data.uid != null) {
         console.log("Login with Email success !");
-        sessionStorage.setItem("user_uid", data.user.uid);
+        console.log("user uid : ", data.uid);
+        sessionStorage.setItem("user_uid", data.uid);
         this.router.navigate(['']);
       }
     })
