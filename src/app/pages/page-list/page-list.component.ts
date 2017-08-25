@@ -49,9 +49,11 @@ export class PageListComponent implements OnInit {
     const queryObservable = this.af.list('/messages', {
       query: {
         limitToLast: 50,
+        orderByChild: 'timeSend'
       }
     });
     queryObservable.subscribe(queriedItems => {
+      console.log("Get Iten")
       this.items = queriedItems;
     });
   }
@@ -61,8 +63,6 @@ export class PageListComponent implements OnInit {
     this.messageModel = '';
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        //count 
-        
         var newPostKey = firebase.database().ref().child('posts').push().key
 
         var ref = firebase.database().ref("items/count");

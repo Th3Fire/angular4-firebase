@@ -39,6 +39,23 @@ export class ProfilePageComponent implements OnInit {
     })
 
   }
+  updateProfile() {
+    console.log("update profile user");
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user != null) {
+          firebase.database().ref('users/user_' + user.uid).set({
+            email: this.email,
+            name: this.name,
+            username: this.name
+        }).then(() => {
+          console.log("save success")
+        }).catch((error)=>{
+          console.log(error);
+        })
+      }
+    });
+
+  }
 }
 
 

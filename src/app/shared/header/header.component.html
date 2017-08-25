@@ -1,4 +1,43 @@
-<header class='header_'>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#"><img src="assets/images/logo.ico" alt=""></a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+true}">Home</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a class="nav-link" routerLink="/pages" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+true}">All Pages</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+true}">User</a>
+      </li>
+      <li class="nav-item" *ngIf="!isLoggedIn">
+        <a class="nav-link" routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+true}">Register</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a class="nav-link" routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+true}">My Profile</a>
+      </li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
+      <div *ngIf="isLoggedIn; then logoutButton else loginButton"></div>
+      <ng-template #loginButton><button class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="login()">Login</button></ng-template>
+      <ng-template #logoutButton><button class="btn btn-outline-danger my-2 my-sm-0" type="submit"(click)="logout()">Logout</button></ng-template>
+    </form>
+  </div>
+</nav>
+
+<!--<header class='header_'>
   <nav>
     <a routerLink="/" class='brand'><img src="assets/images/logo.ico" alt="">Hello-World App!</a>
     <ul class='menu1'>
@@ -55,4 +94,4 @@
       
     </ul>
   </nav>
-</header>
+</header>-->
