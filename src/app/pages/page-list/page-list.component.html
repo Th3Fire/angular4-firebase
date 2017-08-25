@@ -33,7 +33,7 @@
 <form class="form-signin" (submit)="sendMessage(message.value)">
 	<div class="row">
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="message" #message />
+			<input type="text" [(ngModel)]="messageModel" [ngModelOptions]="{standalone: true}" class="form-control" id="message" #message  />
 		</div>
 		<div class="col-sm-4">
 			<button class="btn btn-md btn-primary btn-block" type="submit">Submit</button>

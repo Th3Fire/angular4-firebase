@@ -1,0 +1,26 @@
+<div class="title">
+	My Profile สวัสดี
+</div>
+<img src="{{profileImage}}" alt="" width="50" height="50">
+<p>Display Name : {{name}}</p>
+<p>Email : {{email}}</p>
+
+
+<div class="row">
+	<div class="col-sm-6">
+		<input type="text" class="form-control" [(ngModel)]="name">
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<input type="text" class="form-control" [(ngModel)]="email">
+	</div>
+</div>
+
+
+<!--
+<p *ngIf="isValid;then contentValid else contentInvalid"></p>
+<ng-template #contentValid>VALID</ng-template>
+<ng-template #contentInvalid>INVALID</ng-template>-->
+
+<button type="submit">Edit</button>

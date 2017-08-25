@@ -20,7 +20,7 @@ export class PageListComponent implements OnInit {
   public items: any;
   user: any;
   public userUID = sessionStorage.getItem('user_uid');
-  messageA: string = 'qqq';
+  messageModel: string = '';
   likes: FirebaseListObservable<number[]>;
   constructor(private pageService: PageService, public af: AngularFireDatabase, private router: Router) {
 
@@ -48,7 +48,7 @@ export class PageListComponent implements OnInit {
   getItem() {
     const queryObservable = this.af.list('/messages', {
       query: {
-        limitToLast: 50
+        limitToLast: 50,
       }
     });
     queryObservable.subscribe(queriedItems => {
@@ -58,6 +58,7 @@ export class PageListComponent implements OnInit {
 
   sendMessage(message) {
     var countItem = 0;
+    this.messageModel = '';
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         //count 
