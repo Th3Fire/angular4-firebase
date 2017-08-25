@@ -79,7 +79,8 @@ export class PageListComponent implements OnInit {
           console.log(countItem);
           firebase.database().ref('messages/item_' + user.uid + '_' + new Date()).set({
             message: message,
-            timeSend: ''+new Date()
+            timeSend: ''+new Date(),
+            user: user.displayName
           })
         })
 
