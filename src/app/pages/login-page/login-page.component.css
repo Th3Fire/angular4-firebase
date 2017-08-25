@@ -1,6 +1,6 @@
-.registermodal-container {
+.loginmodal-container {
   padding: 30px;
-  max-width: 350px;
+  max-width: 500px;
   width: 100% !important;
   background-color: #F7F7F7;
   margin: 0 auto;
@@ -9,8 +9,38 @@
   overflow: hidden;
   font-family: roboto;
 }
-.registermodal-container h1 {
+.loginmodal-container h1 {
   text-align: center;
   font-size: 1.8em;
   font-family: roboto;
+}
+
+.form-control {
+  margin-top: 10px;
+}
+.button {
+  cursor: pointer;
+}
+
+.button1 {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button2:hover {
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.signin-button-img {
+  display: block;
+  margin: auto;
+  width: auto;
+  cursor: pointer;
+}
+.title {
+  margin-top: 10px;
+  padding: 30px;
+  margin: 0 auto;
+}
+.facebook-signin-button:hover {
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
 }
