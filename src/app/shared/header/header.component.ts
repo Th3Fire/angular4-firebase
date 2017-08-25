@@ -5,6 +5,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
+import { Router } from "@angular/router";
+
 @Component({
   selector: 'hello-header',
   templateUrl: './header.component.html',
@@ -13,7 +15,8 @@ import * as firebase from 'firebase/app';
 export class HeaderComponent implements OnInit {
   user: Observable<firebase.User>;
   public isLoggedIn: boolean;
-  constructor(public afAuth: AngularFireAuth) { }
+  routerLinkActiveOptions: {exact: boolean}
+  constructor(public afAuth: AngularFireAuth,  private router: Router) { }
 
   ngOnInit() {
     this.user = this.afAuth.authState;
@@ -30,6 +33,12 @@ export class HeaderComponent implements OnInit {
   logout() {
     console.log("clicked Logout");
     this.afAuth.auth.signOut();
+    this.router.navigate(['login']);
+  }
+
+  login() {
+    console.log("clicked login");
+    this.router.navigate(['login']);
   }
 
 }
