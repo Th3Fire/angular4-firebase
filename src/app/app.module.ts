@@ -27,6 +27,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 
 import { LoadingModule } from 'ngx-loading';
 
+import { AuthService } from './providers/auth.service'
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { LoadingModule } from 'ngx-loading';
     ReactiveFormsModule,
     LoadingModule
   ],
-  providers: [PageService],
+  providers: [PageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
