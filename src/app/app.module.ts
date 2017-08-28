@@ -24,9 +24,10 @@ import { PageService } from './pages/shared/page.service';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
-
 import { LoadingModule } from 'ngx-loading';
 
+//Service providers
+import { AuthService } from './providers/auth.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { LoadingModule } from 'ngx-loading';
     ReactiveFormsModule,
     LoadingModule
   ],
-  providers: [PageService],
+  providers: [PageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
