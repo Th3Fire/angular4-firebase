@@ -1,22 +1,41 @@
-<div *ngIf="error" class="alert alert-warning" role="alert">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Error:</span>
-  {{error}}
-</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
 <div class="modal-dialog">
   <div class="loginmodal-container">
-    <h1>Login to Your Account</h1><br>
-    <form class="form-signin" (submit)="loginWithEmail($event, email.value, password.value)">
-      <label for="email" class="sr-only">Email address</label>
-      <input #email type="email" id="email" class="form-control" placeholder="Email address">
-      <label for="password" class="sr-only">Password</label>
-      <input #password type="password" id="password" class="form-control" placeholder="Password" required="">
-      <br>
-      <button class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>
-    </form>
-    <hr>
-    <img src="assets/images/google-sign-in.png" class="rounded mx-auto d-block" alt="" width="300" height="80" (click)="loginWithGoogle()">
-    <hr>
-    <a [routerLink]="['/register']" style="cursor: pointer;">Register Now</a>
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span> {{error}}
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-6"><img src="assets/icons/facebook/facebook-login-icon.png" class="img-fluid facebook-signin-button"
+              (click)="loginWithFacebook()"></div>
+          <div class="col-sm-6"><img src="assets/icons/google-signin/btn_google_signin_dark_normal_web.png" class="img-fluid signin-button-img"
+              onmouseover="this.src='assets/icons/google-signin/btn_google_signin_dark_focus_web.png'" onmouseout="this.src='assets/icons/google-signin/btn_google_signin_dark_normal_web.png'"
+              onmousedown="this.src='assets/icons/google-signin/btn_google_signin_dark_pressed_web.png'" (click)="loginWithGoogle()"></div>
+        </div>
+        <hr>
+
+
+        <form class="form-signin" (submit)="loginWithEmail($event, email.value, password.value)">
+          <label for="email" class="sr-only">Email address</label>
+          <input #email type="email" id="email" class="form-control" placeholder="Email address">
+          <label for="password" class="sr-only">Password</label>
+          <input #password type="password" id="password" class="form-control" placeholder="Password" required="">
+          <br>
+          <button class="btn btn-md btn-primary btn-block button button2 " type="submit">Sign in</button>
+        </form>
+
+      </div>
+
+    </div><br>
+    <div class="row">
+      <div class="col-sm-12">
+        <a [routerLink]="['/register']" style="cursor: pointer;">Register Now</a>
+      </div>
+    </div>
   </div>
 </div>
+
+<div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+

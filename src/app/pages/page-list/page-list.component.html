@@ -26,7 +26,7 @@
 		<tbody>
 			<tr *ngFor="let item of items">
 				<td>{{item.timeSend | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
-				<td>{{item.message}}</td>
+				<td>({{item.user}}) : {{item.message}}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -34,12 +34,14 @@
 	<form class="form-signin" (submit)="sendMessage(message.value)">
 		<div class="row">
 			<div class="col-sm-8">
-				<input type="text" [(ngModel)]="messageModel" [ngModelOptions]="{standalone: true}" class="form-control" id="message" #message
+				<input type="text" [(ngModel)]="messageModel" [ngModelOptions]="{standalone: true}" class="form-control" autocomplete="off" id="message" #message
 				/>
 			</div>
 			<div class="col-sm-4">
-				<button class="btn btn-md btn-primary btn-block" type="submit">Submit</button>
+				<button class="btn btn-md btn-primary btn-block" type="submit" [disabled]="messageModel == ''">Submit</button>
 			</div>
 		</div>
 	</form>
 </div>
+
+<button md-button>Click me!</button>
