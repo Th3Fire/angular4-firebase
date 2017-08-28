@@ -6,6 +6,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
+//Service
+import { AuthService } from '../../providers/auth.service';
+
 @Component({
   selector: 'hello-login-page',
   templateUrl: './login-page.component.html',
@@ -17,9 +20,8 @@ export class LoginPageComponent implements OnInit {
   user: Observable<firebase.User>;
   items: FirebaseListObservable<any[]>;
   msgVal: string = '';
-  public loading = false;
 
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private router: Router) {
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public authService: AuthService, private router: Router) {
     this.items = af.list('/messages', {
       query: {
         limitToLast: 50
@@ -29,21 +31,16 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginWithEmail(event, email, password) {
-    this.loading = true;
     this.afAuth.auth.signInWithEmailAndPassword(email, password).then((data) => {
-      console.log("data : ", data);
-      if (data.uid != null) {
-        this.loading = false;
+      console.log(this);
+      if (data.user.uid != null) {
         console.log("Login with Email success !");
-        console.log("user uid : ", data.uid);
-        sessionStorage.setItem("user_uid", data.uid);
+        sessionStorage.setItem("user_uid", data.user.uid);
         this.router.navigate(['']);
-
       }
     })
       .catch((error: any) => {
         if (error) {
-          this.loading = false;
           this.error = error;
           console.log(this.error);
         }
@@ -51,42 +48,16 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginWithGoogle() {
-    this.loading = true;
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((data) => {
-      console.log("signin google: ", data);
-      if (data.user.uid != null) {
-        this.loading = false;
-        console.log("Login with google success !");
-        sessionStorage.setItem("user_uid", data.user.uid);
-        this.router.navigate(['']);
-      }
-    })
-    .catch((error: any) => {
-      if (error) {
-        this.loading = false;
-        this.error = error;
-        console.log(this.error);
-      }
-    })
-  }
-
-  loginWithFacebook() {
-    this.loading = true;
-    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then((data) => {
-      console.log("signin google: ", data);
-      if (data.user.uid != null) {
-        this.loading = false;
-        console.log("Login with google success !");
-        sessionStorage.setItem("user_uid", data.user.uid);
-        this.router.navigate(['']);
-      }
-    })
-    .catch((error: any) => {
-      if (error) {
-        this.loading = false;
-        this.error = error;
-        console.log(this.error);
-      }
+    // this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((data) => {
+    //   console.log("signin google: ", data);
+    //   if (data.user.uid != null) {
+    //     console.log("Login with google success !");
+    //     sessionStorage.setItem("user_uid", data.user.uid);
+    //     this.router.navigate(['']);
+    //   }
+    // })
+    this.authService.loginWithGoogle().then((data) => {
+      this.router.navigate(['']);
     })
   }
 
@@ -97,7 +68,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     let authSubscription = this.afAuth.authState.subscribe(auth => {
       if (auth != null) {
-        console.log("auth : ", auth);
+        console.log("auth : " , auth);
         this.router.navigate(['']);
       }
     })
