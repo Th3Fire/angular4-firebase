@@ -24,6 +24,7 @@ import { PageService } from './pages/shared/page.service';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { LoadingModule } from 'ngx-loading';
 
 //Service providers
 import { AuthService } from './providers/auth.service';
@@ -54,7 +55,8 @@ import { AuthService } from './providers/auth.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingModule
   ],
   providers: [PageService, AuthService],
   bootstrap: [AppComponent]
