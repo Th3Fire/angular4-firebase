@@ -6,6 +6,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
+//Service
+import { AuthService } from '../../providers/auth.service';
+
 @Component({
   selector: 'hello-login-page',
   templateUrl: './login-page.component.html',
@@ -18,7 +21,7 @@ export class LoginPageComponent implements OnInit {
   items: FirebaseListObservable<any[]>;
   msgVal: string = '';
 
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private router: Router) {
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public authService: AuthService, private router: Router) {
     this.items = af.list('/messages', {
       query: {
         limitToLast: 50
@@ -45,13 +48,16 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginWithGoogle() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((data) => {
-      console.log("signin google: ", data);
-      if (data.user.uid != null) {
-        console.log("Login with google success !");
-        sessionStorage.setItem("user_uid", data.user.uid);
-        this.router.navigate(['']);
-      }
+    // this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((data) => {
+    //   console.log("signin google: ", data);
+    //   if (data.user.uid != null) {
+    //     console.log("Login with google success !");
+    //     sessionStorage.setItem("user_uid", data.user.uid);
+    //     this.router.navigate(['']);
+    //   }
+    // })
+    this.authService.loginWithGoogle().then((data) => {
+      this.router.navigate(['']);
     })
   }
 

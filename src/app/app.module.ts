@@ -25,6 +25,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
+//Service providers
+import { AuthService } from './providers/auth.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
     AngularFireAuthModule,
     ReactiveFormsModule
   ],
-  providers: [PageService],
+  providers: [PageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
