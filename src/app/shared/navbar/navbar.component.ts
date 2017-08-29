@@ -7,16 +7,19 @@ import * as firebase from 'firebase/app';
 
 import { Router } from "@angular/router";
 
+import { NavBarService } from "./navbar.service";
+
 @Component({
-  selector: 'hello-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  moduleId: module.id,
+  selector: 'hello-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class NavBarComponent implements OnInit {
   user: Observable<firebase.User>;
   public isLoggedIn: boolean;
   routerLinkActiveOptions: {exact: boolean}
-  constructor(public afAuth: AngularFireAuth,  private router: Router) { }
+  constructor(public afAuth: AngularFireAuth, private router: Router, public nav: NavBarService) { }
 
   ngOnInit() {
     

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
 import { Component } from '@angular/core';
+import { NavBarService } from './shared/navbar/navbar.service';
 
 @Component({
   selector: 'hello-root',
@@ -17,18 +18,7 @@ export class AppComponent {
   items: FirebaseListObservable<any[]>;
   msgVal: string = '';
 
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-    this.items = af.list('/messages', {
-      query: {
-        limitToLast: 50
-      }
-    });
-
-    this.user = this.afAuth.authState;
-
-    
-
-  }
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public nav: NavBarService) { }
 
   login() {
     this.afAuth.auth.signInAnonymously();

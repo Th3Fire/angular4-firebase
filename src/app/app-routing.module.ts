@@ -7,37 +7,46 @@ import { PageListComponent } from './pages/page-list/page-list.component';
 import { RegisterComponent } from './pages/register/register.component'
 import { LoginPageComponent } from './pages/login-page/login-page.component'
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component'
+import { UnauthorizedComponent } from './pages/error/unauthorized/unauthorized.component'
+import { NotfoundComponent } from './pages/error/notfound/notfound.component'
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    children: []
   },
   {
     path: 'user',
     component: UserComponent,
-    children: []
   },
   {
     path: 'pages',
     component: PageListComponent ,
-    children: []
   },
   {
     path: 'register',
     component: RegisterComponent ,
-    children: []
   },
   {
     path: 'login',
     component: LoginPageComponent ,
-    children: []
   },
   {
     path: 'profile',
     component: ProfilePageComponent ,
-    children: []
   },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent ,
+  },
+  //404
+  {
+    path: '404',
+    component: NotfoundComponent ,
+  },
+  {
+    path: '**', redirectTo: '/404'
+  }
+
   
 ];
 
