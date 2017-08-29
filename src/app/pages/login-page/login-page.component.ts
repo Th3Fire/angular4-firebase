@@ -6,7 +6,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
+import { NavBarService } from '../../shared/navbar/navbar.service';
 import { AuthService } from '../../providers/auth.service';
+
 @Component({
   selector: 'hello-login-page',
   templateUrl: './login-page.component.html',
@@ -20,13 +22,21 @@ export class LoginPageComponent implements OnInit {
   msgVal: string = '';
   public loading = false;
 
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private router: Router, public authService: AuthService) {
-    this.items = af.list('/messages', {
-      query: {
-        limitToLast: 50
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, 
+  private router: Router, public authService: AuthService, public nav: NavBarService) { }
+
+  ngOnInit() {
+    // if (this.authService.user) {
+
+    // }
+    console.log(this.authService.data);
+    let authSubscription = this.afAuth.authState.subscribe(auth => {
+      this.nav.hide();
+      if (auth != null) {
+        console.log("auth : ", auth);
+        this.router.navigate(['']);
       }
-    });
-    this.user = this.afAuth.authState;
+    })
   }
 
   loginWithEmail(event, email, password) {
@@ -99,13 +109,6 @@ export class LoginPageComponent implements OnInit {
     this.items.push({ message: desc });
     this.msgVal = '';
   }
-  ngOnInit() {
-    let authSubscription = this.afAuth.authState.subscribe(auth => {
-      if (auth != null) {
-        console.log("auth : ", auth);
-        this.router.navigate(['']);
-      }
-    })
-  }
+  
 
 }
