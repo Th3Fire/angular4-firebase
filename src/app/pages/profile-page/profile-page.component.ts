@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
+
+import { AuthService } from '../../providers/auth.service';
 
 @Component({
   selector: 'hello-profile-page',
@@ -11,42 +14,31 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./profile-page.component.css']
 })
 export class ProfilePageComponent implements OnInit {
+  isValid: boolean = false;
   name: any;
   email: any;
   profileImage: any;
-  isValid: boolean = false;
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) { }
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public authService: AuthService, private router: Router,) {
+    console.log("displayName : ", authService.displayName);
+    console.log("email : ", authService.email);
+    this.name = this.authService.displayName;
+    this.email = this.authService.email;
+    this.profileImage = this.authService.profileImage;
+   }
 
   ngOnInit() {
-    console.log("F5 Check");
-    this.getUserInfo();
-  }
-  getUserInfo() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user != null) {
-        user.providerData.forEach((data) => {
-          console.log("Sign-in provider: " + data.providerId);
-          console.log("  Provider-specific UID: " + data.uid);
-          console.log("  Name: " + data.displayName);
-          console.log("  Email: " + data.email);
-          console.log("  Photo URL: " + data.photoURL);
-          this.name = data.displayName;
-          this.email = data.email;
-          this.profileImage = data.photoURL;
-        })
 
-      }
-    })
-
+    
   }
+
   updateProfile() {
     console.log("update profile user");
     firebase.auth().onAuthStateChanged((user) => {
       if (user != null) {
           firebase.database().ref('users/user_' + user.uid).set({
-            email: this.email,
-            name: this.name,
-            username: this.name
+            email: this.authService.email,
+            name: this.authService.displayName,
+            username: this.authService.displayName
         }).then(() => {
           console.log("save success")
         }).catch((error)=>{

@@ -9,6 +9,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
+import { NavBarService } from '../../shared/navbar/navbar.service';
+import { AuthService } from '../../providers/auth.service';
+
 @Component({
   selector: 'hello-page-list',
   templateUrl: './page-list.component.html',
@@ -19,23 +22,17 @@ export class PageListComponent implements OnInit {
   pages: Page[];
   public items: any;
   user: any;
-  public userUID = sessionStorage.getItem('user_uid');
   messageModel: string = '';
   likes: FirebaseListObservable<number[]>;
-  constructor(private pageService: PageService, public af: AngularFireDatabase, private router: Router) {
+  constructor(private pageService: PageService, public af: AngularFireDatabase, 
+  private router: Router, public nav: NavBarService, public authService: AuthService) {
 
   }
 
   ngOnInit() {
+    this.nav.show();
     this.getPages();
     this.getItem();
-
-    var user = this.userUID;
-    console.log("current user : ", user);
-    if (user == null || user == '') {
-      console.log("user null");
-      this.router.navigate(['login']);
-    }
 
   }
 
