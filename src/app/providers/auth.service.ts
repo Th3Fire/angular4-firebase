@@ -18,11 +18,6 @@ export class AuthService {
     af.authState.subscribe((data) => {
       if (data == null) {
         router.navigate(['login']);
-      }else {
-        console.log("data : ", data);
-        this.displayName = data.displayName;
-        this.email = data.email;
-        this.profileImage = data.photoURL;
       }
     })
    }
