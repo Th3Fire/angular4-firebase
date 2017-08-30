@@ -1,67 +1,55 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
-import { AuthService } from '../../providers/auth.service';
-import { NavBarService } from '../../shared/navbar/navbar.service';
-
 @Component({
   selector: 'hello-profile-page',
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.css']
 })
-export class ProfilePageComponent implements OnInit, AfterViewInit {
-  isValid: boolean = false;
+export class ProfilePageComponent implements OnInit {
   name: any;
   email: any;
   profileImage: any;
-  public loading = false;
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public authService: AuthService, private router: Router, public nav: NavBarService) {
-    this.loading = true;
-  }
+  isValid: boolean = false;
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) { }
 
   ngOnInit() {
-    this.nav.show();
-    this.loading = true;
-    this.afAuth.auth.currentUser
-
+    console.log("F5 Check");
+    this.getUserInfo();
   }
+  getUserInfo() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user != null) {
+        user.providerData.forEach((data) => {
+          console.log("Sign-in provider: " + data.providerId);
+          console.log("  Provider-specific UID: " + data.uid);
+          console.log("  Name: " + data.displayName);
+          console.log("  Email: " + data.email);
+          console.log("  Photo URL: " + data.photoURL);
+          this.name = data.displayName;
+          this.email = data.email;
+          this.profileImage = data.photoURL;
+        })
 
-  getInfoUser() {
-    this.authService.authState().subscribe((data) => {
-      console.log("checkout user : ", data);
-      if (data != null) {
-        console.log("displayName : ", data.displayName);
-        console.log("email : ", data.email);
-        this.name = data.displayName;
-        this.email = data.email;
-        this.profileImage = data.photoURL;
-        this.loading = false;
       }
-    });
+    })
 
   }
-
-  ngAfterViewInit() {
-    this.getInfoUser();
-
-  }
-
   updateProfile() {
     console.log("update profile user");
     firebase.auth().onAuthStateChanged((user) => {
       if (user != null) {
-        firebase.database().ref('users/user_' + user.uid).set({
-          email: this.authService.email,
-          name: this.authService.displayName,
-          username: this.authService.displayName
+          firebase.database().ref('users/user_' + user.uid).set({
+            email: this.email,
+            name: this.name,
+            username: this.name
         }).then(() => {
           console.log("save success")
-        }).catch((error) => {
+        }).catch((error)=>{
           console.log(error);
         })
       }

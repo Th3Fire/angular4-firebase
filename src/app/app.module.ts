@@ -17,7 +17,7 @@ import * as firebase from 'firebase/app';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
-import { NavBarComponent } from './shared/navbar/navbar.component';
+import { HeaderComponent } from './shared/header/header.component';
 import { PageListComponent } from './pages/page-list/page-list.component';
 import { PageService } from './pages/shared/page.service';
 
@@ -27,24 +27,19 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 
 import { LoadingModule } from 'ngx-loading';
 
+//Service providers
 import { AuthService } from './providers/auth.service';
-import { NavBarService } from './shared/navbar/navbar.service';
-
-import { UnauthorizedComponent } from './pages/error/unauthorized/unauthorized.component';
-import { NotfoundComponent } from './pages/error/notfound/notfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     HomeComponent,
-    NavBarComponent,
+    HeaderComponent,
     PageListComponent,
     RegisterComponent,
     LoginPageComponent,
-    ProfilePageComponent,
-    UnauthorizedComponent,
-    NotfoundComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +59,7 @@ import { NotfoundComponent } from './pages/error/notfound/notfound.component';
     ReactiveFormsModule,
     LoadingModule
   ],
-  providers: [PageService, AuthService, NavBarService],
+  providers: [PageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
