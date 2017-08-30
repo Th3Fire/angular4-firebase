@@ -29,9 +29,12 @@ import { LoadingModule } from 'ngx-loading';
 
 import { AuthService } from './providers/auth.service';
 import { NavBarService } from './shared/navbar/navbar.service';
+import { BlogService } from './pages/blog/blog.service';
 
 import { UnauthorizedComponent } from './pages/error/unauthorized/unauthorized.component';
 import { NotfoundComponent } from './pages/error/notfound/notfound.component';
+import { BlogComponent } from './pages/blog/blog.component';
+import { TruncatePipe } from './pages/blog/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,8 @@ import { NotfoundComponent } from './pages/error/notfound/notfound.component';
     ProfilePageComponent,
     UnauthorizedComponent,
     NotfoundComponent,
+    BlogComponent,
+    TruncatePipe,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +69,7 @@ import { NotfoundComponent } from './pages/error/notfound/notfound.component';
     ReactiveFormsModule,
     LoadingModule
   ],
-  providers: [PageService, AuthService, NavBarService],
+  providers: [PageService, AuthService, NavBarService, BlogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
