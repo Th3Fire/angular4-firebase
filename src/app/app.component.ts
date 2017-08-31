@@ -9,7 +9,7 @@ import { NavBarService } from './shared/navbar/navbar.service';
 @Component({
   selector: 'hello-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'Hello';

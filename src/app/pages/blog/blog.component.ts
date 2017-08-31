@@ -15,7 +15,7 @@ import {  TruncatePipe } from './truncate.pipe';
 @Component({
   selector: 'hello-blog',
   templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+  styleUrls: ['./blog.component.css'],
 })
 export class BlogComponent implements OnInit, AfterViewInit {
   blogs: FirebaseListObservable<any[]>;

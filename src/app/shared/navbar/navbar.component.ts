@@ -10,7 +10,6 @@ import { Router } from "@angular/router";
 import { NavBarService } from "./navbar.service";
 
 @Component({
-  moduleId: module.id,
   selector: 'hello-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
