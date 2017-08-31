@@ -70,6 +70,7 @@ import { TruncatePipe } from './pages/blog/truncate.pipe';
     LoadingModule.forRoot({
         animationType: ANIMATION_TYPES.wanderingCubes,
         backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+        fullScreenBackdrop: true,
         backdropBorderRadius: '4px',
         primaryColour: '#ffffff', 
         secondaryColour: '#ffffff', 
