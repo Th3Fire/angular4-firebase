@@ -25,7 +25,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
-import { LoadingModule } from 'ngx-loading';
+import { LoadingModule, ANIMATION_TYPES  } from 'ngx-loading';
 
 import { AuthService } from './providers/auth.service';
 import { NavBarService } from './shared/navbar/navbar.service';
@@ -67,7 +67,15 @@ import { TruncatePipe } from './pages/blog/truncate.pipe';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
-    LoadingModule
+    LoadingModule.forRoot({
+        animationType: ANIMATION_TYPES.wanderingCubes,
+        fullScreenBackdrop: true,
+        backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+        backdropBorderRadius: '4px',
+        primaryColour: '#ffffff', 
+        secondaryColour: '#ffffff', 
+        tertiaryColour: '#ffffff'
+    })
   ],
   providers: [PageService, AuthService, NavBarService, BlogService],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px', fullScreenBackdrop: true }"></ngx-loading>
 <header>
 	<h2>บทความล่าสุด</h2>
 </header>
@@ -13,12 +13,11 @@
 								<div class="card">
 									<div class="card-block">
 										<div class="row">
-											<div class="col-12 col-sm-5 col-md-5 col-lg-5">
+											<div class="col-12 col-sm-6 col-md-5 col-lg-5">
 												<img class="col-12 float-left" [src]="_DomSanitizer.bypassSecurityTrustUrl('data:image/png;base64, '+item.image_title)" alt="">
 											</div>
-											<div class="col-12 col-sm-7 col-md-7 col-lg-7">
-												<h4 class="card-title">{{item.title}}</h4>
-												<p class="card-text">{{ item.body | limitTo: 25 }}</p>
+											<div class="col-12 col-sm-6 col-md-7 col-lg-7">
+												<h4 class="card-title">{{item.title | limitTo : 20}}</h4>
 											</div>
 										</div>
 									</div>
