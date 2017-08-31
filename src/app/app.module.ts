@@ -69,7 +69,6 @@ import { TruncatePipe } from './pages/blog/truncate.pipe';
     ReactiveFormsModule,
     LoadingModule.forRoot({
         animationType: ANIMATION_TYPES.wanderingCubes,
-        fullScreenBackdrop: true,
         backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
         backdropBorderRadius: '4px',
         primaryColour: '#ffffff', 
