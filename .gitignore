@@ -44,3 +44,6 @@ Thumbs.db
 
 # environment
 /src/environments/*
+
+# npm debug log
+npm-debug.log*
