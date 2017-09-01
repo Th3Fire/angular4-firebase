@@ -55,6 +55,10 @@ export class PageListComponent implements OnInit {
     });
   }
 
+  goBlog() {
+    this.router.navigate(['blog','2017','1','xx xx']);
+  }
+
   sendMessage(message) {
     var countItem = 0;
     this.messageModel = '';

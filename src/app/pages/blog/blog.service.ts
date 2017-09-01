@@ -9,11 +9,19 @@ import * as firebase from 'firebase/app';
 export class BlogService {
   constructor(public af: AngularFireDatabase) { }
 
-  getAll(limit=30) {
+  getAll(limit = 30) {
     return this.af.list('blog', {
       query: {
         limitToLast: limit,
       }
     });
-    }
+  }
+  getById(id) {
+    return this.af.list('/blog', {
+      query: {
+        orderByChild: 'id',
+        equalTo: parseInt(id)
+      }
+    });
+  }
 }

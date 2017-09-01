@@ -1,0 +1,17 @@
+<ngx-loading [show]="loading" [config]="{ fullScreenBackdrop: true }"></ngx-loading>
+<header>
+	{{title}}
+</header>
+<div id='main'>
+
+	<article>
+		<p>{{createDate | date : 'yyyy-MM-dd'}}</p>
+		<hr>
+		<!--<div class="sample">
+			<div [froalaEditor]="options" [(froalaModel)]="content"></div>
+		</div>-->
+
+		<div [froalaView]="detail" *ngIf="!loading"></div>
+
+	</article>
+</div>

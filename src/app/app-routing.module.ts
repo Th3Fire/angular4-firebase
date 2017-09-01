@@ -10,6 +10,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { UnauthorizedComponent } from './pages/error/unauthorized/unauthorized.component'
 import { NotfoundComponent } from './pages/error/notfound/notfound.component'
 import { BlogComponent } from './pages/blog/blog.component';
+import { BlogIdComponent } from './pages/blog/blog-id/blog-id.component'
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'blog',
     component: BlogComponent ,
+  },
+  {
+    path: 'blog/:id/:title_url',
+    component: BlogIdComponent ,
   },
   {
     path: 'pages',

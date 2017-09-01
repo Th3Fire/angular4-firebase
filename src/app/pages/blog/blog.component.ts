@@ -21,7 +21,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
   blogs: FirebaseListObservable<any[]>;
   public items: any;
   public loading = false;
-  constructor(public nav: NavBarService, private blogService: BlogService, public af: AngularFireDatabase, public _DomSanitizer: DomSanitizer,) { 
+  constructor(public nav: NavBarService, private blogService: BlogService, public af: AngularFireDatabase, private router: Router, public _DomSanitizer: DomSanitizer,) { 
     this.loading = true;
     
   }
@@ -29,6 +29,12 @@ export class BlogComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.nav.show();
   }
+
+  getBlogId(id, titleUrl) {
+    console.log("id : ", id);
+    console.log("titleUrl : ",titleUrl);
+    this.router.navigate(['blog', id, titleUrl]);
+  } 
 
   ngAfterViewInit() {
     this.blogs = this.blogService.getAll(10);
