@@ -1,3 +1,19 @@
-<p>
-  admin works!
-</p>
+<ngx-loading [show]="loading" [config]="{ fullScreenBackdrop: true }"></ngx-loading>
+
+<h1>Admin Page</h1>
+
+<div class="row">
+	<div class="col-12">
+		<input type="text" placeholder="หัวข้อ" [(ngModel)]="title" class="form-control"> <br>
+
+		<textarea [froalaEditor]="options" [(froalaModel)]="content"></textarea>
+		<br>
+
+
+
+		<button class="btn btn-md btn-primary pull-right" type="submit" (click)="post()">POST</button>
+
+		<h1>Preview</h1>
+		<div [froalaView]="content" *ngIf="content != undefined"></div>
+	</div>
+</div>

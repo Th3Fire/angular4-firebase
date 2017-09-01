@@ -30,6 +30,10 @@ true}">Register</a>
         <a class="nav-link" routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
 true}">My Profile</a>
       </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a class="nav-link" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+true}">Admin</a>
+      </li>
 
     </ul>
     <form class="form-inline my-2 my-lg-0">

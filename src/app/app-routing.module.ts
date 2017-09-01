@@ -10,7 +10,8 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { UnauthorizedComponent } from './pages/error/unauthorized/unauthorized.component'
 import { NotfoundComponent } from './pages/error/notfound/notfound.component'
 import { BlogComponent } from './pages/blog/blog.component';
-import { BlogIdComponent } from './pages/blog/blog-id/blog-id.component'
+import { BlogIdComponent } from './pages/blog/blog-id/blog-id.component';
+import { AdminComponent } from './pages/admin/admin.component';
 const routes: Routes = [
   {
     path: '',
@@ -45,7 +46,11 @@ const routes: Routes = [
     component: ProfilePageComponent ,
   },
   {
-    path: 'unauthorized',
+    path: 'admin',
+    component: AdminComponent ,
+  },
+  {
+    path: '401',
     component: UnauthorizedComponent ,
   },
   //404

@@ -12,7 +12,9 @@ export class BlogService {
   getAll(limit = 30) {
     return this.af.list('blog', {
       query: {
-        limitToLast: limit,
+        orderByChild: 'create_date',
+        limitToLast: limit
+        
       }
     });
   }
