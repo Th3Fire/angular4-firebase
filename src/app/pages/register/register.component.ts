@@ -39,7 +39,8 @@ export class RegisterComponent implements OnInit {
           firebase.database().ref('users/user_' + user.uid).set({
             username: name,
             email: email,
-            name: name
+            name: name,
+            user_level: 0
           }).catch((error: any) => {
             if (error) {
               this.loading = false;
