@@ -35,6 +35,10 @@ import { UnauthorizedComponent } from './pages/error/unauthorized/unauthorized.c
 import { NotfoundComponent } from './pages/error/notfound/notfound.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { TruncatePipe } from './pages/blog/truncate.pipe';
+import { BlogIdComponent } from './pages/blog/blog-id/blog-id.component';
+
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,8 @@ import { TruncatePipe } from './pages/blog/truncate.pipe';
     NotfoundComponent,
     BlogComponent,
     TruncatePipe,
+    BlogIdComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +80,9 @@ import { TruncatePipe } from './pages/blog/truncate.pipe';
         primaryColour: '#ffffff', 
         secondaryColour: '#ffffff', 
         tertiaryColour: '#ffffff'
-    })
+    }),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   providers: [PageService, AuthService, NavBarService, BlogService],
   bootstrap: [AppComponent]
